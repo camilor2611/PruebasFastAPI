@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class FinishedBooking(BaseModel):
-    isCreated: bool
+    isFinished: bool
 
 
 class BookingToFinish(BaseModel):

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class CreatedClient(BaseModel):
@@ -8,4 +8,8 @@ class CreatedClient(BaseModel):
 class Client(BaseModel):
     name: str
     phone: str
-    email: str
+    email: EmailStr
+
+
+class SavedClient(Client):
+    id: str
