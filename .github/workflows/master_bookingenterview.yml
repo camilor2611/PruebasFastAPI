@@ -67,3 +67,9 @@ jobs:
           app-name: 'bookingenterview'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_67F7BE8DE8CD413CB9B1FD578454C0DD }}
+  
+      - name: Start Uvicorn server
+        run: |
+          cd path/to/your/app
+          source venv/bin/activate
+          uvicorn main:app --host 0.0.0.0 --port 8000
