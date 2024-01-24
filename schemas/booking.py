@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, field_validator
 from datetime import datetime
 from .hairdresser import ServiceHairdresser
 
@@ -14,7 +14,7 @@ class Booking(ServiceHairdresser):
     datetime_start: str
     datetime_end: str    
 
-    @validator("datetime_start", "datetime_end")
+    @field_validator("datetime_start", "datetime_end")
     def ensure_date_range(cls, val):
         datetime.strptime(val, '%Y-%m-%d %H:%M:%S')
         return val

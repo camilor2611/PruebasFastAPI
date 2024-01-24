@@ -58,7 +58,7 @@ class AppDataBase(IDataBase):
         user_collection = self.__db["user"]
         searched_user = self.get_client(client.email)
         if len(searched_user) == 0:
-            document_client = client.dict()
+            document_client = client.model_dump()
             document_client['type'] = self.__category_client
             result_insert = user_collection.insert_one(document_client)
             return str(result_insert.inserted_id)
