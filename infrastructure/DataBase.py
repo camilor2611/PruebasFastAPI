@@ -93,7 +93,7 @@ class AppDataBase(IDataBase):
 
     def create_booking(self, booking_to_save: BookingToSave) -> str:
         booking_collection = self.__db["booking"]
-        document_booking = booking_to_save.dict()
+        document_booking = booking_to_save.model_dump()
         result_insert = booking_collection.insert_one(document_booking)
         return str(result_insert.inserted_id)
 

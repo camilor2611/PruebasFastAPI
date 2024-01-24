@@ -1,5 +1,5 @@
 # Introducción
-Esta API está enfocada en la asignación de citas de clientes a peluqueros
+Esta API está enfocada en la asignación de citas de clientes con su peluquero de preferencia 
 
 # Servicios o herramientas necesarios
 - MongoDB
@@ -19,7 +19,7 @@ Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app
 
 - Solo se puede registrar un peluquero siempre que se le asigne alguno de los siguientes servicios "Service 1", "Service 2", "Service 3".
 - Cada reserva puede tener los siguientes status "Created", "Finished"
-- El tiempo minimo de reserva es de 30min y maximo 120min, y además debe ser multiplo de 30min, es decir, 13:00, 13:30, 14:00 son valores validos. Adem
+- El tiempo minimo de reserva es de 30min y maximo 120min, y además debe ser multiplo de 30min, es decir, 13:00, 13:30, 14:00 son valores válidos. Además, por cada solicitud solo se puede reservar un servicio del peluquero
 - Solo se pueden reservar fechas futuras, tenga en cuenta que la zona horaria es America/Bogota
 - Solo se enviará la notificación de creación de reservación al cliente
 - Por simplicidad la fecha y hora se manejan con el siguiente formato "%Y-%m-%d %H:%M:%S" (Hora militar), además se ignora la zona horaria.

@@ -19,13 +19,13 @@ class DomainClient():
         self.__handler_db.create_client(client)
 
     def create_booking(self, booking: Booking) -> str:
-        document_booking = booking.dict()
+        document_booking = booking.model_dump()
         document_booking['datetime_start'] =  self.__tz.localize(
             datetime.strptime(document_booking['datetime_start'], self.__format_datetime)
-        )
+        ).replace(second=0)
         document_booking['datetime_end'] = self.__tz.localize(
             datetime.strptime(document_booking['datetime_end'], self.__format_datetime) 
-        )
+        ).replace(second=0)
         current_datetime = datetime.now(self.__tz)
         result_client = self.__handler_db.get_client(booking.email_client)
         result_hairdresser = self.__handler_db.get_hairdresser(booking.email_hairdresser)

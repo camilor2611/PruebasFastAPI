@@ -9,7 +9,7 @@ def send_mail(recipients: Recipients, subject: str, content: str):
         client = EmailClient.from_connection_string(connection_string)
         message = {
             "senderAddress": "DoNotReply@9166101c-80c3-42b4-9977-2d1950c42921.azurecomm.net",
-            "recipients": recipients.dict(),
+            "recipients": recipients.model_dump(),
             "content": {
                 "subject": subject,
                 "plainText": content,
