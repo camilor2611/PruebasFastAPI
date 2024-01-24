@@ -6,21 +6,27 @@ from schemas.client import Client
 from schemas.address import Address, Recipients
 from handlerError import CustomError
 from domain.mailAzure import send_mail
+import pytz
 
 
 class DomainClient():
     def __init__(self, data_base: AppDataBase) -> None:
         self.__handler_db = data_base
         self.__format_datetime = '%Y-%m-%d %H:%M:%S'
+        self.__tz = pytz.timezone('America/Bogota')
 
     def create_client(self, client: Client) -> str:
         self.__handler_db.create_client(client)
 
     def create_booking(self, booking: Booking) -> str:
         document_booking = booking.dict()
-        document_booking['datetime_start'] = datetime.strptime(document_booking['datetime_start'], self.__format_datetime)
-        document_booking['datetime_end'] = datetime.strptime(document_booking['datetime_end'], self.__format_datetime) 
-        current_datetime = datetime.now()
+        document_booking['datetime_start'] =  self.__tz.localize(
+            datetime.strptime(document_booking['datetime_start'], self.__format_datetime)
+        )
+        document_booking['datetime_end'] = self.__tz.localize(
+            datetime.strptime(document_booking['datetime_end'], self.__format_datetime) 
+        )
+        current_datetime = datetime.now(self.__tz)
         result_client = self.__handler_db.get_client(booking.email_client)
         result_hairdresser = self.__handler_db.get_hairdresser(booking.email_hairdresser)
         date_booked = self.__handler_db.get_booking(document_booking['email_hairdresser'], document_booking['datetime_start'], document_booking['datetime_end'])
