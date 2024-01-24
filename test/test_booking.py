@@ -16,7 +16,7 @@ def test_new_booking():
         "/client/new-client",
         json = {
             "name": f"User {num_client}",
-            "phone": "000-0000-000",
+            "phone": 3001234567,
             "email": email_client
         },
     )
@@ -30,7 +30,7 @@ def test_new_booking():
         "/hairdresser/new-hairdresser",
         json = {
             "name": f"User {num_hairdresser}",
-            "phone": "000-0000-000",
+            "phone": 3001234567,
             "email": email_hairdresser,
             "services": services
         },

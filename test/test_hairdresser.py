@@ -13,7 +13,7 @@ def test_new_hairdresser():
         "/hairdresser/new-hairdresser",
         json = {
             "name": f"User {num_}",
-            "phone": "000-0000-000",
+            "phone": 3001234567,
             "email": f"user{num_}@example.com",
             "services": [
                 "Service 1"
@@ -33,7 +33,7 @@ def test_error_service():
         "/hairdresser/new-hairdresser",
         json = {
             "name": f"User {num_}",
-            "phone": "000-0000-000",
+            "phone": 3001234567,
             "email": f"user{num_}@example.com",
             "services": [
                 incorrect_service

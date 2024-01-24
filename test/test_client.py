@@ -13,7 +13,7 @@ def test_new_client():
         "/client/new-client",
         json = {
             "name": f"User {num_}",
-            "phone": "000-0000-000",
+            "phone": 3001234567,
             "email": f"user{num_}@example.com"
         },
     )
@@ -28,7 +28,7 @@ def test_error_mail():
         "/client/new-client",
         json={ 
             "name": "string",
-            "phone": "string",
+            "phone": 3001234567,
             "email": "userexample.com"
         },
     )

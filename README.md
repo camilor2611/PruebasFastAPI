@@ -20,6 +20,7 @@ Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app
 # Suposiciones
 
 - Solo se puede registrar un peluquero siempre que se le asigne alguno de los siguientes servicios "Service 1", "Service 2", "Service 3".
+- El campo phone es de 10 dígitos
 - Cada reserva puede tener los siguientes status "Created", "Finished"
 - El tiempo mínimo de reserva es de 30min y máximo 120min, y además debe ser multiplo de 30min, es decir, 13:00, 13:30, 14:00 son valores válidos. Además, por cada solicitud solo se puede reservar un servicio del peluquero
 - Solo se pueden reservar fechas futuras, tenga en cuenta que la zona horaria es America/Bogota
