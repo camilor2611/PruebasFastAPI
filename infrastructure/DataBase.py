@@ -85,13 +85,15 @@ class AppDataBase(IDataBase):
             raise DBError("There is exist user - hairdresser")
         
     def get_booking(self, email_hairdresser: str, datetime_start: datetime, datetime_end: datetime) -> List[SavedBooking]:
-        """Get all reservations between to datetimes"""
+        """Get all reservations between to datetimes and status is Created"""
         booking_collection = self.__db['booking']
         conditions = [
             { "email_hairdresser": {"$exists": True} },
             { "email_hairdresser": {"$eq": email_hairdresser} },
             { "datetime_start": {"$exists": True} },
-            { "datetime_start": {"$gte": datetime_start, "$lt": datetime_end}}
+            { "datetime_start": {"$gte": datetime_start, "$lt": datetime_end}},
+            { "status": {"$exists": True} },
+            { "status": {"$eq": "Created"} },
         ]
         proposition = {
             "$and": conditions
