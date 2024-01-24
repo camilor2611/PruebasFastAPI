@@ -33,7 +33,7 @@ Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app
 
 # Testing
 
-Para realizar el testing se debe instalar `pip install -r requirements_dev.txt` y ejecutar `pytest` los test realizan una consulta directa a los endpoints y se realizan los siguientes test
+Para realizar el testing se debe instalar `pip install -r requirements_dev.txt` y ejecutar `pytest` los test realizan una consulta directa a los endpoints y se realizan los siguientes
 
 - Se verifica que cree un cliente y se registre correctamente en DB (test_client.py)
 - Se intenta insertar un cliente con un correo no válido (test_client.py)
