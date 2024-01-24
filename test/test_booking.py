@@ -55,5 +55,16 @@ def test_new_booking():
         }
     )
     res = response.json()
+    id_booking = res['idBooking']
     assert response.status_code == 200  
     assert res['isCreated']
+    response = client.post(
+        "/hairdresser/finish-booking",
+        json = {
+            "mail_hairdresser": email_hairdresser,
+            "idBooking": id_booking,
+        }
+    )
+    res = response.json()
+    assert response.status_code == 200  
+    assert res['isFinished']
