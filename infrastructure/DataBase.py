@@ -47,14 +47,19 @@ class AppDataBase(IDataBase):
         return found_user
 
     def get_client(self, email: str) -> List[SavedClient]:
+        """Get a list with one record about information of the client"""
         found_user = self.__get_user(self.__category_client, email)
         return found_user
 
     def get_hairdresser(self, email: str) -> List[SavedHairdresser]:
+        """Get a list with one record about information of the haidressee"""
         found_user = self.__get_user(self.__category_hairdresser, email)
         return found_user
 
     def create_client(self, client: Client) -> str:
+        """Create a client on DB, In fact, It was added new key 'type' with value 'Client'.
+        if there is exist client then the function get error
+        """
         user_collection = self.__db["user"]
         searched_user = self.get_client(client.email)
         if len(searched_user) == 0:
@@ -66,6 +71,9 @@ class AppDataBase(IDataBase):
             raise DBError("There is exist user - client")
 
     def create_hairdresser(self, hairdresser: Hairdresser) -> str:
+        """Create a hairdresser on DB, In fact, It was added new key 'type' with value 'Hairdresser'.
+        if there is exist Hairdresser then the function get error
+        """
         user_collection = self.__db["user"]
         searched_user = self.get_hairdresser(hairdresser.email)
         if len(searched_user) == 0:
@@ -77,12 +85,13 @@ class AppDataBase(IDataBase):
             raise DBError("There is exist user - hairdresser")
         
     def get_booking(self, email_hairdresser: str, datetime_start: datetime, datetime_end: datetime) -> List[SavedBooking]:
+        """Get all reservations between to datetimes"""
         booking_collection = self.__db['booking']
         conditions = [
             { "email_hairdresser": {"$exists": True} },
             { "email_hairdresser": {"$eq": email_hairdresser} },
             { "datetime_start": {"$exists": True} },
-            { "datetime_start": {"$gte": datetime_start, "$lt": datetime_end}}   
+            { "datetime_start": {"$gte": datetime_start, "$lt": datetime_end}}
         ]
         proposition = {
             "$and": conditions
@@ -92,12 +101,14 @@ class AppDataBase(IDataBase):
         return found_booking
 
     def create_booking(self, booking_to_save: BookingToSave) -> str:
+        """Create new reservation"""
         booking_collection = self.__db["booking"]
         document_booking = booking_to_save.model_dump()
         result_insert = booking_collection.insert_one(document_booking)
         return str(result_insert.inserted_id)
 
     def is_assigned_hairdresser(self, id_booking: str, email_hairdresser: str):
+        """Validate if id booking belongs the hairdresser"""
         booking_collection = self.__db['booking']
         conditions = [
             { "email_hairdresser": {"$exists": True} },
@@ -111,7 +122,8 @@ class AppDataBase(IDataBase):
         is_assigned = True if len(found_booking) > 0 else False
         return is_assigned
     
-    def update_status_booking(self, id_booking: str, status: str) -> bool:  # return ID
+    def update_status_booking(self, id_booking: str, status: str) -> bool:
+        """Update status of a booking"""
         booking_collection = self.__db['booking']
         result = booking_collection.update_one(
             {'_id': ObjectId(id_booking)}, 
