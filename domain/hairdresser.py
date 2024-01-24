@@ -9,9 +9,11 @@ class DomainHairdresser():
         self.__handler_db = data_base
     
     def create_hairdresser(self, hairdresser: Hairdresser) -> str:
+        """the function will try create hairdresser on DB"""
         return self.__handler_db.create_hairdresser(hairdresser)
     
     def finish_booking(self, booking_to_finish: BookingToFinish) -> bool:
+        """Validate if email and idbooking belongs to booking then it was updated status to Finished"""
         is_assigned = self.__handler_db.is_assigned_hairdresser(booking_to_finish.idBooking, booking_to_finish.mail_hairdresser)
         if is_assigned:
             result = self.__handler_db.update_status_booking(booking_to_finish.idBooking, "Finished")
