@@ -19,6 +19,7 @@ Es necesario instalar las dependencias del documento requirements.txt por lo que
 
 Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app`, esta es una aplicación fastAPI, por tanto puede acceder a swagger en http://localhost:8000/docs
 
+
 # Suposiciones
 
 - Solo se puede registrar un peluquero siempre que se le asigne alguno de los siguientes servicios "Service 1", "Service 2", "Service 3".
@@ -30,6 +31,7 @@ Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app
 - No puede haber reservaciones sobrepuestas en tiempo
 - Por simplicidad la fecha y hora se manejan con el siguiente formato "%Y-%m-%d %H:%M:%S" (Hora militar), además se ignora la zona horaria.
 - Se supone que la aplicación es stateless y no maneja ningún tipo de autenticación y autorización por ende el servicio para finalizar una cita reservada debe enviar id y el mail del peluquero, de este modo se validará que al menos el correo del peluquero coincida con la reserva para él
+- La notificación se realiza únicamente al cliente que reservó el espacio con el peluquero
 
 # Testing
 
