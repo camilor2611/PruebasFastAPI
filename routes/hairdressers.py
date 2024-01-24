@@ -21,7 +21,7 @@ def new_hairdresser(req_hairdresser: Hairdresser):
         _domain_hairdresser.create_hairdresser(req_hairdresser)
         return {"isCreated": True}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=409, detail=str(e))
 
 
 @routes_hairdresser.post("/finish-booking", response_model=FinishedBooking)
@@ -31,4 +31,4 @@ def finish_booking(req_finish_booking: BookingToFinish):
         result = _domain_hairdresser.finish_booking(req_finish_booking)
         return {"isFinished": result}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=409, detail=str(e))

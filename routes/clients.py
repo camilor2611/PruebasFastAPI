@@ -21,7 +21,7 @@ def new_client(req_client: Client):
         _client_domain.create_client(req_client)
         return {"isCreated": True}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=409, detail=str(e))
     
 
 @routes_client.post("/new-booking", response_model=CreatedBook)
@@ -31,4 +31,4 @@ def new_book(req_book: Booking):
         id_booking = _client_domain.create_booking(req_book)
         return {"isCreated": True, "idBooking": id_booking }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=409, detail=str(e))
