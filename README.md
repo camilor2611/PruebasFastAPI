@@ -12,6 +12,7 @@ La aplicación se desarrolló en python 3.9.4, para la ejecución del código se
 mongo_db_name = "APP_BOOKING"
 
 connection_mongo_db = "Aquí connection string Mongo DB"
+
 connection_communication_services = "Aquí la connection string de Azure communication services"
 
 Es necesario instalar las dependencias del documento requirements.txt por lo que es recomendable instalarlas en un entorno virtual `python -m venv .venv` y posteriormente `pip install -r requirements.txt`.
