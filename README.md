@@ -9,8 +9,8 @@ Esta API está enfocada en la asignación de citas de clientes con su peluquero 
 # Entorno de desarrollo
 La aplicación se desarrolló en python 3.9.4, para la ejecución del código se necesita configurar un archivo .env en la raíz del proyecto el cual contiene las siguientes variables de entorno
 
-connection_mongo_db = "Aquí connection string Mongo DB"
 mongo_db_name = "APP_BOOKING"
+connection_mongo_db = "Aquí connection string Mongo DB"
 connection_communication_services = "Aquí la connection string de Azure communication services"
 
 Es necesario instalar las dependencias del documento requirements.txt por lo que es recomendable instalarlas en un entorno virtual `python -m venv .venv` y posteriormente `pip install -r requirements.txt`.
