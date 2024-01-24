@@ -22,5 +22,6 @@ Finalmente para ejecutar la aplicación use el comando uvicorn `uvicorn main:app
 - El tiempo minimo de reserva es de 30min y maximo 120min, y además debe ser multiplo de 30min, es decir, 13:00, 13:30, 14:00 son valores válidos. Además, por cada solicitud solo se puede reservar un servicio del peluquero
 - Solo se pueden reservar fechas futuras, tenga en cuenta que la zona horaria es America/Bogota
 - Solo se enviará la notificación de creación de reservación al cliente
+- No puede haber reservaciones sobrepuestas en tiempo
 - Por simplicidad la fecha y hora se manejan con el siguiente formato "%Y-%m-%d %H:%M:%S" (Hora militar), además se ignora la zona horaria.
 - Se supone que la aplicación es stateless y no maneja ningún tipo de autenticación y autorización por ende el servicio para finalizar una cita reservada debe enviar id y el mail del peluquero, de este modo se validará que al menos el correo del peluquero coincida con la reserva para él
