@@ -20,4 +20,4 @@ def send_mail(recipients: Recipients, subject: str, content: str):
         result = poller.result()
         return result
     except Exception:
-        print("It could not send email")
+        pass
