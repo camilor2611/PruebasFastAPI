@@ -8,13 +8,13 @@ client = TestClient(app)
 
 
 def test_new_client():
-    num_email = random.randint(1, 10000)
+    num_ = random.randint(1, 10000)
     response = client.post(
         "/client/new-client",
-        json={
-            "name": "string",
-            "phone": "string",
-            "email": f"user{num_email}@example.com"
+        json = {
+            "name": f"User {num_}",
+            "phone": "000-0000-000",
+            "email": f"user{num_}@example.com"
         },
     )
     assert response.status_code == 200

@@ -69,7 +69,7 @@ class AppDataBase(IDataBase):
         user_collection = self.__db["user"]
         searched_user = self.get_hairdresser(hairdresser.email)
         if len(searched_user) == 0:
-            document_hairdresser = hairdresser.dict()
+            document_hairdresser = hairdresser.model_dump()
             document_hairdresser['type'] = self.__category_hairdresser
             result_insert = user_collection.insert_one(document_hairdresser)
             return str(result_insert.inserted_id)

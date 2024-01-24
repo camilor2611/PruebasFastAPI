@@ -4,7 +4,7 @@ from pydantic import BaseModel, constr, EmailStr
 SERVICES_HAIRDRESSER = ("Service 1", "Service 2", "Service 3")
 SERVICES_PATTERN = "|".join(SERVICES_HAIRDRESSER)
 
-services_pattern = constr(pattern=f'^{SERVICES_PATTERN}$')
+services_pattern = constr(pattern=f'^({SERVICES_PATTERN})$')
 
 class CreatedHairdresser(BaseModel):
     isCreated: bool
