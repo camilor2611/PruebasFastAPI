@@ -29,16 +29,17 @@ class DomainClient():
         if booking.service not in result_hairdresser[0]['services']:
             raise CustomError(f"The hairdresser do not have '{booking.service}' service")
         
-        date_booked = self.__handler_db.get_booking(document_booking['email_hairdresser'], document_booking['datetime_start'], document_booking['datetime_end'])
-        if len(date_booked) > 0:
-            raise CustomError("There is a booking in those dates")
-        
         document_booking['datetime_start'] =  self.__tz.localize(
             datetime.strptime(document_booking['datetime_start'], self.__format_datetime)
         ).replace(second=0)
         document_booking['datetime_end'] = self.__tz.localize(
             datetime.strptime(document_booking['datetime_end'], self.__format_datetime) 
         ).replace(second=0)
+
+        date_booked = self.__handler_db.get_booking(document_booking['email_hairdresser'], document_booking['datetime_start'], document_booking['datetime_end'])
+        if len(date_booked) > 0:
+            raise CustomError("There is a booking in those dates")        
+        
         current_datetime = datetime.now(self.__tz)
         document_booking['status'] = "Created"
         differents_time_start_and_now = document_booking['datetime_start'] - current_datetime
